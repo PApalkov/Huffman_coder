@@ -16,7 +16,7 @@ public class Do {
     private static JTextArea input;
     private static JButton[] buttons;
 
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> initilize());
     }
