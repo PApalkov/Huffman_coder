@@ -150,6 +150,7 @@ public class Do {
         input.setVisible(true);
         input.setBorder(new EmptyBorder(10, 10, 10, 10));
 
+
         text.add(input);
 
 
@@ -159,6 +160,5 @@ public class Do {
         window.setLocationRelativeTo(null);
         window.pack();
         window.setVisible(true);
-
     }
 }
