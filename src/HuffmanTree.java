@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 
-public class Tree {
+public class HuffmanTree {
     private TreeNode root;
     private File file;
     Queue queue;
@@ -29,6 +29,8 @@ public class Tree {
                 queue.add(ch);
 
             }
+
+            reader.close();
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
@@ -127,11 +129,11 @@ public class Tree {
     /**
      * Coding file by the encoding table
      */
-    public File code_file(){
+    public File code_file(String save_file_path){
 
         ArrayList<DecodeTableNode> table = make_table();
 
-        File coded_file = new File("coded.txt");
+        File coded_file = new File(save_file_path + ".txt");
         try(FileWriter writer = new FileWriter(coded_file, false); FileReader reader = new FileReader(file))
         {
 
@@ -146,6 +148,8 @@ public class Tree {
             }
 
             writer.flush();
+            writer.close();
+            reader.close();
         }
         catch(IOException ex){
 
@@ -156,10 +160,10 @@ public class Tree {
     }
 
 
-    public File code_file(File file){
+    public File code_file(File file, File to_save){
         this.file = file;
         make_tree();
-        return code_file();
+        return code_file(to_save.getPath());
     }
 
     /**
@@ -190,6 +194,8 @@ public class Tree {
             }
 
             writer.flush();
+            writer.close();
+            reader.close();
         }
         catch(IOException ex){
 
@@ -207,9 +213,9 @@ public class Tree {
     /**
      *Generates a key file with symbols and its codes
      */
-    public File make_key_file(ArrayList<DecodeTableNode> table){
+    public File make_key_file(ArrayList<DecodeTableNode> table, String save_file_path){
 
-        File key_file = new File("key.txt");
+        File key_file = new File(save_file_path + ".txt");
         try(FileWriter writer = new FileWriter(key_file, false);)
         {
 
@@ -219,13 +225,18 @@ public class Tree {
             }
 
             writer.flush();
+            writer.close();
         }
         catch(IOException ex){
 
             System.out.println(ex.getMessage());
         }
-
         return key_file;
+    }
+
+    public File make_key_file(File to_save){
+        ArrayList<DecodeTableNode> table = make_table();
+        return make_key_file(table, to_save.getPath());
     }
 
     /**
@@ -254,6 +265,8 @@ public class Tree {
 
                 if (c != -1)  table.add(new DecodeTableNode(value, code));
             }
+
+            reader.close();
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
@@ -309,13 +322,13 @@ public class Tree {
         this.queue = queue;
     }
 
-    public Tree() {
+    public HuffmanTree() {
         this.root = null;
         this.file = new File("text.txt");
         this.queue = new Queue();
     }
 
-    public Tree(TreeNode root, File file, Queue queue) {
+    public HuffmanTree(TreeNode root, File file, Queue queue) {
         this.root = root;
         this.file = file;
         this.queue = queue;
