@@ -1,3 +1,6 @@
+/**
+ * The Node class of Queue
+ */
 
 public class QueueNode {
 

@@ -1,9 +1,19 @@
+/**
+ This class holds symbols and their frequency in text
+ */
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class Queue {
-    List<QueueNode> queue;
+
+    /**
+     * Using LinkedList is optimal, because the number of symbols is not large and we need to
+     * add new elements rather often
+     */
+    private List<QueueNode> queue;
+
 
     public void add(char value){
         if (!contains(value)){
